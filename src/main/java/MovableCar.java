@@ -9,4 +9,8 @@ public class MovableCar {
     }
 
     public String getName() { return name; }
+
+    private boolean isMovable() {
+        return new Random().nextInt(10) >= 4;
+    }
 }
