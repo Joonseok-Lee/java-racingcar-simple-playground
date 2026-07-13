@@ -7,12 +7,12 @@ public class RacingGame {
 
     public RacingGame(Set<MovableCar> carSet) {
         int count = new Scanner(System.in).nextInt();
-        carSetInit(carSet, count);
+        carSetInit(count);
     }
 
-    private void carSetInit(Set<MovableCar> carSet, int count) {
+    private void carSetInit(int count) {
         for (int i = 0; i < count; i++) {
-            carSet.add(new MovableCar(i + "번 차"));
+            this.carSet.add(new MovableCar(i + "번 차"));
         }
     }
 }
