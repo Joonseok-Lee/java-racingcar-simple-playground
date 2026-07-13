@@ -15,4 +15,10 @@ public class MovableCar {
     private boolean isMovable() {
         return new Random().nextInt(10) >= 4;
     }
+
+    public void move() {
+        if (isMovable()) {
+            this.distance += 1;
+        }
+    }
 }
