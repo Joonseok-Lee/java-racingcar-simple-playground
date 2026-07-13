@@ -20,16 +20,12 @@ public class RacingGame {
         }
     }
 
-    public void game() {
-        gameStart();
-    }
-
-    private void gameStart() {
+    private List<MovableCar> gameStart() {
         RaceStart();
 
         int highestDistance = getHighestDistance();
-        List<MovableCar> winnerList = getWinnerList(highestDistance);
 
+        return getWinnerList(highestDistance);
     }
 
     private List<MovableCar> getWinnerList(int highestDistance) {
