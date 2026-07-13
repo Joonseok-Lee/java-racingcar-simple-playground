@@ -5,10 +5,12 @@ public class RacingGame {
     
     private Set<MovableCar> carSet;
     private Scanner scanner = new Scanner(System.in);
+    private int turn;
 
     public RacingGame(Set<MovableCar> carSet) {
         int count = scanner.nextInt();
         carSetInit(count);
+        this.turn = scanner.nextInt();
     }
 
     private void carSetInit(int count) {
