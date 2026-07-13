@@ -3,9 +3,11 @@ import java.util.Random;
 public class MovableCar {
 
     private String name;
+    private int distance;
 
     public MovableCar(String name) {
         this.name = name;
+        this.distance = 0;
     }
 
     public String getName() { return name; }
