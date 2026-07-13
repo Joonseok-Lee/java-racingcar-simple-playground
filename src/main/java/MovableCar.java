@@ -5,6 +5,10 @@ public class MovableCar {
     private String name;
     private int distance;
 
+    public int getDistance() {
+        return distance;
+    }
+
     public MovableCar(String name) {
         this.name = name;
         this.distance = 0;
