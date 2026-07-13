@@ -4,9 +4,10 @@ import java.util.Set;
 public class RacingGame {
     
     private Set<MovableCar> carSet;
+    private Scanner scanner = new Scanner(System.in);
 
     public RacingGame(Set<MovableCar> carSet) {
-        int count = new Scanner(System.in).nextInt();
+        int count = scanner.nextInt();
         carSetInit(count);
     }
 
