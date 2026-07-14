@@ -9,6 +9,10 @@ public class MovableCar {
         return distance;
     }
 
+    private String getDistanceToString() {
+        return "-".repeat(distance);
+    }
+
     public MovableCar(String name) {
         this.name = name;
         this.distance = 0;
