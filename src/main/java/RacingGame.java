@@ -25,7 +25,7 @@ public class RacingGame {
         }
     }
 
-    private void game() {
+    public void game() {
         RaceStart();
 
         int highestDistance = getHighestDistance();
