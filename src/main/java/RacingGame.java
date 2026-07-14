@@ -29,10 +29,10 @@ public class RacingGame {
         int highestDistance = getHighestDistance();
 
         List<String> winnerList = getWinnerList(highestDistance).stream()
-                .map(car -> car.getName())
+                .map(MovableCar::getName)
                 .toList();
 
-        System.out.println(winnerList.toString() + "가 최종 우승했습니다.");
+        System.out.println(winnerList + "가 최종 우승했습니다.");
     }
 
     private List<MovableCar> getWinnerList(int highestDistance) {
