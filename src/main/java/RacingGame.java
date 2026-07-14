@@ -16,7 +16,8 @@ public class RacingGame {
 
     private void carSetInit(int count) {
         for (int i = 0; i < count; i++) {
-            this.carSet.add(new MovableCar(i + "번 차"));
+            String name = scanner.nextLine();
+            this.carSet.add(new MovableCar(name));
         }
     }
 
