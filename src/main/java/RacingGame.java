@@ -1,10 +1,11 @@
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
 public class RacingGame {
     
-    private Set<MovableCar> carSet;
+    private Set<MovableCar> carSet = new HashSet<>();
     private Scanner scanner = new Scanner(System.in);
     private int turn;
 
@@ -34,7 +35,7 @@ public class RacingGame {
                 .map(MovableCar::getName)
                 .toList();
 
-        System.out.println(winnerList + "가 최종 우승했습니다.");
+        System.out.println(String.join(", ", winnerList) + "가 최종 우승했습니다.");
     }
 
     private List<MovableCar> getWinnerList(int highestDistance) {
