@@ -9,7 +9,7 @@ public class MovableCar {
         return distance;
     }
 
-    private String getDistanceToString() {
+    public String getDistanceToString() {
         return "-".repeat(distance);
     }
 
