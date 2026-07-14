@@ -39,8 +39,16 @@ public class RacingGame {
     }
 
     private void RaceStart() {
+        System.out.println("실행 결과");
         for(int i = 0; i < turn; i++)
             moveAllCar();
+    }
+
+    private void printTurnResult() {
+        for(MovableCar car : carSet) {
+            System.out.println(car.getName() + " : " + car.getDistanceToString());
+        }
+        System.out.println();
     }
 
     private void moveAllCar() {
