@@ -1,15 +1,19 @@
+import view.InputView;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
 public class RacingGame {
-    
+
+    private final InputView inputView;
     private Set<MovableCar> carSet = new HashSet<>();
     private Scanner scanner = new Scanner(System.in);
     private int turn;
 
-    public RacingGame() {
+    public RacingGame(InputView inputView) {
+        this.inputView = inputView;
         carSetInit();
 
         System.out.println("시도할 회수는 몇회인가요?");
