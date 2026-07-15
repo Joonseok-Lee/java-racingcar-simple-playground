@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class InputView {
 
-    public static List<String> initPlayerName() {
+    public static List<String> initCarName() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String[] names = new Scanner(System.in).nextLine().split(",");
         return Arrays.asList(names);
