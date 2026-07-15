@@ -22,12 +22,8 @@ public class MovableCar {
 
     public String getName() { return name; }
 
-    private boolean isMovable() {
-        return new Random().nextInt(10) >= 4;
-    }
-
-    public void move() {
-        if (isMovable()) {
+    public void move(int movable) {
+        if (movable >= 4) {
             this.distance += 1;
         }
     }
