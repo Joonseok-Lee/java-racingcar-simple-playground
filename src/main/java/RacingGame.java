@@ -23,14 +23,15 @@ public class RacingGame {
     public void start() {
         RaceStart();
 
-        int highestDistance = getHighestDistance();
-
-        List<String> winnerNames = getWinnerNames(highestDistance);
+        List<String> winnerNames = getWinnerNames();
 
         System.out.println(String.join(", ", winnerNames) + "가 최종 우승했습니다.");
     }
 
-    public List<String> getWinnerNames(int highestDistance) {
+    public List<String> getWinnerNames() {
+
+        int highestDistance = getHighestDistance();
+
         return getWinnerList(highestDistance).stream()
                 .map(MovableCar::getName)
                 .toList();
