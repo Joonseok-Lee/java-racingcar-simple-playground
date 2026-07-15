@@ -6,21 +6,16 @@ import java.util.Set;
 
 public class RacingGame {
 
-    private final InputView inputView;
     private Set<MovableCar> carSet = new HashSet<>();
     private int turn;
 
-    public RacingGame(InputView inputView) {
-        this.inputView = inputView;
-        carSetInit();
-
-        this.turn = inputView.initTurnCount();
+    public RacingGame(List<String> carNames, int turn) {
+        carSetInit(carNames);
+        this.turn = turn;
     }
 
-    private void carSetInit() {
-        List<String> names = inputView.initPlayerName();
-
-        for (String name : names) {
+    private void carSetInit(List<String> carNames) {
+        for (String name : carNames) {
             this.carSet.add(new MovableCar(name));
         }
     }
