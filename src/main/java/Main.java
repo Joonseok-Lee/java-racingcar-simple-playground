@@ -1,3 +1,4 @@
+import domain.RacingGame;
 import view.InputView;
 import view.ResultView;
 
