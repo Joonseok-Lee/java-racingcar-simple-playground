@@ -1,7 +1,6 @@
 package domain;
 
 import domain.rand.Movable;
-import domain.rand.MovableImpl;
 
 import java.util.HashSet;
 import java.util.List;
@@ -13,8 +12,8 @@ public class RacingGame {
     private int turn;
     private Movable movable;
 
-    public RacingGame(List<String> carNames, int turn, Movable movable) {
-        carSetInit(carNames);
+    public RacingGame(Set<MovableCar> cars, int turn, Movable movable) {
+        this.carSet = cars;
         this.turn = turn;
         this.movable = movable;
     }
