@@ -25,11 +25,15 @@ public class RacingGame {
 
         int highestDistance = getHighestDistance();
 
-        List<String> winnerList = getWinnerList(highestDistance).stream()
+        List<String> winnerNames = getWinnerNames(highestDistance);
+
+        System.out.println(String.join(", ", winnerNames) + "가 최종 우승했습니다.");
+    }
+
+    public List<String> getWinnerNames(int highestDistance) {
+        return getWinnerList(highestDistance).stream()
                 .map(MovableCar::getName)
                 .toList();
-
-        System.out.println(String.join(", ", winnerList) + "가 최종 우승했습니다.");
     }
 
     private List<MovableCar> getWinnerList(int highestDistance) {
