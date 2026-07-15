@@ -1,5 +1,8 @@
 package domain;
 
+import domain.rand.Movable;
+import domain.rand.MovableImpl;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -8,10 +11,12 @@ public class RacingGame {
 
     private Set<MovableCar> carSet = new HashSet<>();
     private int turn;
+    private Movable movable;
 
-    public RacingGame(List<String> carNames, int turn) {
+    public RacingGame(List<String> carNames, int turn, Movable movable) {
         carSetInit(carNames);
         this.turn = turn;
+        this.movable = movable;
     }
 
     private void carSetInit(List<String> carNames) {
@@ -58,7 +63,7 @@ public class RacingGame {
     private void moveAllCar() {
         carSet.stream()
                 .parallel()
-                .forEach(MovableCar::move);
+                .forEach(car -> car.move(movable.isMovable()));
     }
 
     private int getHighestDistance() {
