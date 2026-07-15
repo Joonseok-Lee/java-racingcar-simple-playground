@@ -13,4 +13,9 @@ public class InputView {
         String[] names = scanner.nextLine().split(",");
         return Arrays.asList(names);
     }
+
+    public int initTurnCount() {
+        System.out.println("시도할 회수는 몇회인가요?");
+        return scanner.nextInt();
+    }
 }
