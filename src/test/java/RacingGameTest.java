@@ -22,4 +22,17 @@ public class RacingGameTest {
         // then
         assertThat(game.getWinnerNames()).containsExactly("single");
     }
+
+    @Test
+    @DisplayName("턴 수가 0인 경우")
+    void ifTurnIsZero() {
+        // given
+        RacingGame game = new RacingGame(Set.of(new MovableCar("1st"), new MovableCar("2nd"), new MovableCar("3rd")), 0, new MovableImpl());
+
+        // when
+        game.start();
+
+        // then
+        assertThat(game.getWinnerNames()).contains("1st", "2nd", "3rd");
+    }
 }
