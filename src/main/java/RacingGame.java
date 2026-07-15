@@ -22,10 +22,6 @@ public class RacingGame {
 
     public void start() {
         RaceStart();
-
-        List<String> winnerNames = getWinnerNames();
-
-        System.out.println(String.join(", ", winnerNames) + "가 최종 우승했습니다.");
     }
 
     public List<String> getWinnerNames() {
