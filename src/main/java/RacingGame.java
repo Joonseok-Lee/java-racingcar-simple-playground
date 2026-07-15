@@ -9,21 +9,17 @@ public class RacingGame {
 
     private final InputView inputView;
     private Set<MovableCar> carSet = new HashSet<>();
-    private Scanner scanner = new Scanner(System.in);
     private int turn;
 
     public RacingGame(InputView inputView) {
         this.inputView = inputView;
         carSetInit();
 
-        System.out.println("시도할 회수는 몇회인가요?");
-        this.turn = scanner.nextInt();
+        this.turn = inputView.initTurnCount();
     }
 
     private void carSetInit() {
-
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String[] names = scanner.nextLine().split(",");
+        List<String> names = inputView.initPlayerName();
 
         for (String name : names) {
             this.carSet.add(new MovableCar(name));
