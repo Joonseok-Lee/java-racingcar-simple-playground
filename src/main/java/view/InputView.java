@@ -1,15 +1,24 @@
 package view;
 
-import java.util.Arrays;
-import java.util.List;
+import domain.MovableCar;
+
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class InputView {
 
-    public static List<String> initCarName() {
+    public static Set<MovableCar> initCars() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String[] names = new Scanner(System.in).nextLine().split(",");
-        return Arrays.asList(names);
+
+        Set<MovableCar> cars = new HashSet<>();
+
+        for(String name : names) {
+            cars.add(new MovableCar(name));
+        }
+
+        return cars;
     }
 
     public static int initTurnCount() {
