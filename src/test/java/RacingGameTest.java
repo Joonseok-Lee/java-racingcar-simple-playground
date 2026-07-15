@@ -35,4 +35,23 @@ public class RacingGameTest {
         // then
         assertThat(game.getWinnerNames()).contains("1st", "2nd", "3rd");
     }
+
+    @Test
+    @DisplayName("임의로 2칸 간 차량과 1칸 간 차량이 있는 경우")
+    void winnerIsMoveTwice() {
+        // given
+        MovableCar move2 = new MovableCar("move_2");
+        MovableCar move1 = new MovableCar("move_1");
+
+        move2.move(4);
+        move2.move(4);
+        move1.move(4);
+
+        // when
+        RacingGame game = new RacingGame(Set.of(move1, move2), 0, () -> 4);
+        game.start();
+
+        // then
+        assertThat(game.getWinnerNames()).containsExactly("move_2");
+    }
 }
