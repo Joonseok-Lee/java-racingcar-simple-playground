@@ -1,4 +1,5 @@
 import view.InputView;
+import view.ResultView;
 
 import java.util.List;
 
@@ -10,5 +11,7 @@ public class Main {
 
         RacingGame racingGame = new RacingGame(carNames, turnCount);
         racingGame.start();
+
+        ResultView.printResult(racingGame.getWinnerNames());
     }
 }
