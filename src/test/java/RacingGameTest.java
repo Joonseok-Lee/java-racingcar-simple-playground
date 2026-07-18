@@ -17,7 +17,9 @@ public class RacingGameTest {
         RacingGame game = new RacingGame(Set.of(new MovableCar("single")), 3, new MovableImpl());
 
         // when
-        game.start();
+        while(!game.isFinished()) {
+            game.start();
+        }
 
         // then
         assertThat(game.getWinnerNames()).containsExactly("single");
@@ -30,7 +32,9 @@ public class RacingGameTest {
         RacingGame game = new RacingGame(Set.of(new MovableCar("1st"), new MovableCar("2nd"), new MovableCar("3rd")), 0, new MovableImpl());
 
         // when
-        game.start();
+        while(!game.isFinished()) {
+            game.start();
+        }
 
         // then
         assertThat(game.getWinnerNames()).contains("1st", "2nd", "3rd");
@@ -49,7 +53,9 @@ public class RacingGameTest {
 
         // when
         RacingGame game = new RacingGame(Set.of(move1, move2), 0, () -> 4);
-        game.start();
+        while(!game.isFinished()) {
+            game.start();
+        }
 
         // then
         assertThat(game.getWinnerNames()).containsExactly("move_2");
