@@ -9,24 +9,22 @@ import java.util.Set;
 
 public class InputView {
 
-    public static Set<MovableCar> initCars() {
+    public static String[] initNames() {
+        // 이름을 입력받음
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        String input = new Scanner(System.in).nextLine();
 
-        String input;
-
+        // 입력값이 유효한지 검증
+        // 내부 메소드로 분리함
         while(true) {
-            input = new Scanner(System.in).nextLine();
-            try {
-                if (input.contains(" "))
-                    throw new IllegalArgumentException();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("입력값에는 공백이 포함될 수 없습니다.");
-            }
+            if (initNames(input)) break;
         }
 
-        String[] names = input.split(",");
+        return input.split(",");
 
+    }
+
+    public static Set<MovableCar> initCars(String[] names) {
         Set<MovableCar> cars = new HashSet<>();
 
         for(String name : names) {
@@ -34,6 +32,21 @@ public class InputView {
         }
 
         return cars;
+    }
+
+    private static boolean initNames(String input) {
+        try {
+            namesInputValidation(input);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println("입력값에는 공백이 포함될 수 없습니다.");
+        }
+        return false;
+    }
+
+    private static void namesInputValidation(String input) {
+        if (input.contains(" "))
+            throw new IllegalArgumentException();
     }
 
     public static int initTurnCount() {
