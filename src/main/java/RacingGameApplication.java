@@ -9,10 +9,10 @@ import java.util.Set;
 public class RacingGameApplication {
 
     public static void run() {
-        final Set<MovableCar> cars = InputView.initCars();
+        final String[] names = InputView.initNames();
         final int turnCount = InputView.initTurnCount();
 
-        RacingGame racingGame = new RacingGame(cars, turnCount, new MovableImpl());
+        RacingGame racingGame = new RacingGame(names, turnCount, new MovableImpl());
 
         ResultView.printGameStart();
 
