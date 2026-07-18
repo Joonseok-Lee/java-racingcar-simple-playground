@@ -8,7 +8,10 @@ import java.util.Set;
 public class ResultView {
 
     public static void printTurnResult(Set<MovableCar> cars) {
-
+        for(MovableCar car : cars) {
+            System.out.println(car.getName() + " : " + car.getDistanceToString());
+        }
+        System.out.println();
     }
 
     public static void printFinalResult(List<String> winnerNames) {
