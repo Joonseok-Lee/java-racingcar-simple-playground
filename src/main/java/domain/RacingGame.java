@@ -18,7 +18,6 @@ public class RacingGame {
         this.movable = movable;
     }
 
-
     public void start() {
         raceStart();
     }
@@ -40,18 +39,11 @@ public class RacingGame {
     }
 
     private void raceStart() {
-        System.out.println("실행 결과");
-        for(int i = 0; i < turn; i++) {
+//        System.out.println("실행 결과");
+//        for(int i = 0; i < turn; i++) {
             moveAllCar();
-            printTurnResult();
-        }
-    }
-
-    private void printTurnResult() {
-        for(MovableCar car : carSet) {
-            System.out.println(car.getName() + " : " + car.getDistanceToString());
-        }
-        System.out.println();
+//            printTurnResult();
+//        }
     }
 
     private void moveAllCar() {
