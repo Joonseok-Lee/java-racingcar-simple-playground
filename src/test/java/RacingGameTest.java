@@ -101,6 +101,7 @@ public class RacingGameTest {
         // then
         Assertions.assertThrows(
                 NoSuchElementException.class,
+                // when
                 inputView::inputTurnCount
         );
     }
