@@ -18,11 +18,6 @@ public class RacingGame {
         this.movable = movable;
     }
 
-    private void carSetInit(List<String> carNames) {
-        for (String name : carNames) {
-            this.carSet.add(new MovableCar(name));
-        }
-    }
 
     public void start() {
         raceStart();
