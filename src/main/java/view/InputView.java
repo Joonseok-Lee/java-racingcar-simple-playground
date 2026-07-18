@@ -15,11 +15,12 @@ public class InputView {
     public String[] inputNames() {
         // 이름을 입력받음
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String input = scanner.nextLine();
+        String input;
 
         // 입력값이 유효한지 검증
         // 내부 메소드로 분리함
         while(true) {
+            input = scanner.nextLine();
             if (initNames(input)) break;
         }
 
@@ -46,11 +47,12 @@ public class InputView {
     public int inputTurnCount() {
         // 턴 수를 입력받음
         System.out.println("시도할 회수는 몇회인가요?");
-        int turnCount = scanner.nextInt();
+        int turnCount;
 
         // 턴 수 검증
         // 내부 메소드로 분리함
         while(true) {
+            turnCount = scanner.nextInt();
             if (initTurnCount(turnCount)) break;
         }
         return turnCount;
