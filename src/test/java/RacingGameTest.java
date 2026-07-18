@@ -3,9 +3,13 @@ import domain.MovableCar;
 import domain.RacingGame;
 import domain.rand.Movable;
 import domain.rand.MovableImpl;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import view.InputView;
 
+import java.io.ByteArrayInputStream;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -70,5 +74,20 @@ public class RacingGameTest {
 
         // then
         assertThat(game.getWinnerNames()).containsExactly("move_2");
+    }
+
+    @DisplayName("이름 입력에 공백이 포함된 경우 재입력 요청")
+    @Test
+    void ifContainSpaceInNamesInputRequestRetry() {
+        // given
+        ByteArrayInputStream bais = new ByteArrayInputStream("Alice, Bob, Charlie\n".getBytes());
+        InputView inputView = new InputView(bais);
+
+        // then
+        Assertions.assertThrows(
+                NoSuchElementException.class,
+                // when
+                inputView::inputNames
+        );
     }
 }
