@@ -19,7 +19,7 @@ public class RacingGame {
     }
 
     public void start() {
-        raceStart();
+        moveAllCar();
     }
 
     public List<String> getWinnerNames() {
@@ -31,19 +31,15 @@ public class RacingGame {
                 .toList();
     }
 
+    public int getTurn() {
+        return turn;
+    }
+
     private List<MovableCar> getWinnerList(int highestDistance) {
         return carSet.parallelStream()
                 .filter(car ->
                         car.getDistance() == highestDistance)
                 .toList();
-    }
-
-    private void raceStart() {
-//        System.out.println("실행 결과");
-//        for(int i = 0; i < turn; i++) {
-            moveAllCar();
-//            printTurnResult();
-//        }
     }
 
     private void moveAllCar() {
