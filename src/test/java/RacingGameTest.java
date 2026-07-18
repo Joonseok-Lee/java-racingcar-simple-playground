@@ -90,4 +90,18 @@ public class RacingGameTest {
                 inputView::inputNames
         );
     }
+
+    @DisplayName("턴 입력에 음이 아닌 정수가 아닌 값을 입력한 경우 재입력 요청")
+    @Test
+    void isNotNonNegativeInteger() {
+        // given
+        ByteArrayInputStream bais = new ByteArrayInputStream("it is string\n".getBytes());
+        InputView inputView = new InputView(bais);
+
+        // then
+        Assertions.assertThrows(
+                NoSuchElementException.class,
+                inputView::inputTurnCount
+        );
+    }
 }
