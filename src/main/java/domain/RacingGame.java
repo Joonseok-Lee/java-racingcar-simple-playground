@@ -8,9 +8,9 @@ import java.util.Set;
 
 public class RacingGame {
 
-    private Set<MovableCar> carSet = new HashSet<>();
-    private int turn;
-    private Movable movable;
+    private final Set<MovableCar> carSet;
+    private final int turn;
+    private final Movable movable;
 
     public RacingGame(Set<MovableCar> cars, int turn, Movable movable) {
         this.carSet = cars;
