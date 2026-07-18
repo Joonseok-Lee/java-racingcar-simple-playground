@@ -1,10 +1,13 @@
+import domain.CarSetInitializer;
 import domain.MovableCar;
 import domain.RacingGame;
+import domain.rand.Movable;
 import domain.rand.MovableImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,7 +17,8 @@ public class RacingGameTest {
     @DisplayName("차가 1대인 경우")
     void ifSingleCar() {
         // given
-        RacingGame game = new RacingGame(Set.of(new MovableCar("single")), 3, new MovableImpl());
+        String[] names = { "single" };
+        RacingGame game = new RacingGame(CarSetInitializer.initCarSet(names), 3, new MovableImpl());
 
         // when
         while(!game.isFinished()) {
@@ -29,7 +33,8 @@ public class RacingGameTest {
     @DisplayName("턴 수가 0인 경우")
     void ifTurnIsZero() {
         // given
-        RacingGame game = new RacingGame(Set.of(new MovableCar("1st"), new MovableCar("2nd"), new MovableCar("3rd")), 0, new MovableImpl());
+        String[] names = { "1st", "2nd", "3rd" };
+        RacingGame game = new RacingGame(CarSetInitializer.initCarSet(names), 0, new MovableImpl());
 
         // when
         while(!game.isFinished()) {
@@ -44,15 +49,21 @@ public class RacingGameTest {
     @DisplayName("임의로 2칸 간 차량과 1칸 간 차량이 있는 경우")
     void winnerIsMoveTwice() {
         // given
+
         MovableCar move2 = new MovableCar("move_2");
         MovableCar move1 = new MovableCar("move_1");
 
+        // move2 is moving twice
         move2.move(4);
         move2.move(4);
+
+        //move1 is moving once
         move1.move(4);
 
+        Set<MovableCar> cars = Set.of(move2, move1);
+
         // when
-        RacingGame game = new RacingGame(Set.of(move1, move2), 0, () -> 4);
+        RacingGame game = new RacingGame(cars, 0, () -> 4);
         while(!game.isFinished()) {
             game.start();
         }

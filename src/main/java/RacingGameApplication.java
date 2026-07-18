@@ -1,3 +1,4 @@
+import domain.CarSetInitializer;
 import domain.MovableCar;
 import domain.RacingGame;
 import domain.rand.MovableImpl;
@@ -12,7 +13,7 @@ public class RacingGameApplication {
         final String[] names = InputView.initNames();
         final int turnCount = InputView.initTurnCount();
 
-        RacingGame racingGame = new RacingGame(names, turnCount, new MovableImpl());
+        RacingGame racingGame = new RacingGame(CarSetInitializer.initCarSet(names), turnCount, new MovableImpl());
 
         ResultView.printGameStart();
 
