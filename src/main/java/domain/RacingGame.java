@@ -10,15 +10,18 @@ public class RacingGame {
 
     private final Set<MovableCar> carSet;
     private final int turn;
+    private int currentTurn;
     private final Movable movable;
 
     public RacingGame(Set<MovableCar> cars, int turn, Movable movable) {
         this.carSet = cars;
         this.turn = turn;
+        this.currentTurn = 0;
         this.movable = movable;
     }
 
     public void start() {
+        currentTurn++;
         moveAllCar();
     }
 
@@ -31,12 +34,12 @@ public class RacingGame {
                 .toList();
     }
 
-    public int getTurn() {
-        return turn;
-    }
-
     public Set<MovableCar> getCarSet() {
         return carSet;
+    }
+
+    public boolean isFinished() {
+        return currentTurn == turn;
     }
 
     private List<MovableCar> getWinnerList(int highestDistance) {
@@ -48,7 +51,6 @@ public class RacingGame {
 
     private void moveAllCar() {
         carSet.stream()
-                .parallel()
                 .forEach(car -> car.move(movable.isMovable()));
     }
 
