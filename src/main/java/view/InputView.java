@@ -24,16 +24,6 @@ public class InputView {
 
     }
 
-    public static Set<MovableCar> initCars(String[] names) {
-        Set<MovableCar> cars = new HashSet<>();
-
-        for(String name : names) {
-            cars.add(new MovableCar(name));
-        }
-
-        return cars;
-    }
-
     private static boolean initNames(String input) {
         try {
             namesInputValidation(input);
