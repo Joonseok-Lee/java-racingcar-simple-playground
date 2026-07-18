@@ -36,21 +36,31 @@ public class InputView {
         }
     }
 
-    public static int initTurnCount() {
+    public static int inputTurnCount() {
+        // 턴 수를 입력받음
         System.out.println("시도할 회수는 몇회인가요?");
+        int turnCount = new Scanner(System.in).nextInt();
 
-        int turnCount;
-
+        // 턴 수 검증
+        // 내부 메소드로 분리함
         while(true) {
-            try {
-                turnCount = new Scanner(System.in).nextInt();
-                if (turnCount < 0)
-                    throw new InputMismatchException();
-                break;
-            } catch (InputMismatchException e) {
-                System.out.println("입력값은 음이 아닌 정수만 가능합니다.");
-            }
+            if (initTurnCount(turnCount)) break;
         }
         return turnCount;
+    }
+
+    private static boolean initTurnCount(int turnCount) {
+        try {
+            turnCountInputValidation(turnCount);
+            return true;
+        } catch (InputMismatchException e) {
+            System.out.println("입력값은 음이 아닌 정수만 가능합니다.");
+        }
+        return false;
+    }
+
+    private static void turnCountInputValidation(int turnCount) {
+        if (turnCount < 0)
+            throw new InputMismatchException();
     }
 }

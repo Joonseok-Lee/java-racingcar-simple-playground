@@ -8,7 +8,7 @@ public class RacingGameApplication {
 
     public static void run() {
         final String[] names = InputView.inputNames();
-        final int turnCount = InputView.initTurnCount();
+        final int turnCount = InputView.inputTurnCount();
 
         RacingGame racingGame = new RacingGame(CarSetInitializer.initCarSet(names), turnCount, new MovableImpl());
 
