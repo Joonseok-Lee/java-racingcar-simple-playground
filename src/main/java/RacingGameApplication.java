@@ -14,7 +14,13 @@ public class RacingGameApplication {
 
         RacingGame racingGame = new RacingGame(cars, turnCount, new MovableImpl());
 
-        ResultView.printInGameResult(racingGame);
+        ResultView.printGameStart();
+
+        while(!racingGame.isFinished()) {
+            racingGame.start();
+            ResultView.printTurnResult(racingGame.getCarSet());
+        }
+
         ResultView.printFinalResult(racingGame.getWinnerNames());
     }
 }
