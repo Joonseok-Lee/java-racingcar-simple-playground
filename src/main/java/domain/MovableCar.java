@@ -2,7 +2,7 @@ package domain;
 
 public class MovableCar {
 
-    private String name;
+    private final String name;
     private int distance;
 
     public int getDistance() {
