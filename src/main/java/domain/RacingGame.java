@@ -13,11 +13,20 @@ public class RacingGame {
     private int currentTurn;
     private final Movable movable;
 
-    public RacingGame(Set<MovableCar> cars, int turn, Movable movable) {
-        this.carSet = cars;
+    public RacingGame(String[] names, int turn, Movable movable) {
+        this.carSet = initCarSet(names);;
         this.turn = turn;
         this.currentTurn = 0;
         this.movable = movable;
+    }
+
+    private Set<MovableCar> initCarSet(String[] names) {
+        Set<MovableCar> cars = new HashSet<>();
+
+        for(String name : names) {
+            cars.add(new MovableCar(name));
+        }
+        return cars;
     }
 
     public void start() {
