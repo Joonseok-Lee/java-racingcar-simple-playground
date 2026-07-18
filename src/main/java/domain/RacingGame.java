@@ -35,6 +35,10 @@ public class RacingGame {
         return turn;
     }
 
+    public Set<MovableCar> getCarSet() {
+        return carSet;
+    }
+
     private List<MovableCar> getWinnerList(int highestDistance) {
         return carSet.parallelStream()
                 .filter(car ->
