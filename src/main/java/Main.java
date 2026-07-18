@@ -15,6 +15,6 @@ public class Main {
         RacingGame racingGame = new RacingGame(cars, turnCount, new MovableImpl());
         racingGame.start();
 
-        ResultView.printResult(racingGame.getWinnerNames());
+        ResultView.printFinalResult(racingGame.getWinnerNames());
     }
 }
