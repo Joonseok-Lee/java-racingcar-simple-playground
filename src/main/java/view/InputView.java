@@ -35,8 +35,9 @@ public class InputView {
     }
 
     private static void namesInputValidation(String input) {
-        if (input.contains(" "))
+        if (input.contains(" ")) {
             throw new IllegalArgumentException();
+        }
     }
 
     public static int initTurnCount() {
