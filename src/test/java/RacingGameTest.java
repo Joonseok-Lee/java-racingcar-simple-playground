@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import view.InputView;
 
 import java.io.ByteArrayInputStream;
+import java.nio.ByteBuffer;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -104,5 +105,33 @@ public class RacingGameTest {
                 // when
                 inputView::inputTurnCount
         );
+    }
+
+    @DisplayName("이름 입력값이 정상적으로 처리된 경우")
+    @Test
+    void validNamesInput() {
+        // given
+        ByteArrayInputStream bais = new ByteArrayInputStream("Alice,Bob,Charlie\n".getBytes());
+        InputView inputView = new InputView(bais);
+
+        // when
+        String[] names = inputView.inputNames();
+
+        // then
+        assertThat(names).containsExactly("Alice", "Bob", "Charlie");
+    }
+
+    @DisplayName("턴 수 입력이 정상적으로 처리된 경우")
+    @Test
+    void validTurnCountInput() {
+        // given
+        ByteArrayInputStream bais = new ByteArrayInputStream("1\n".getBytes());
+        InputView inputView = new InputView(bais);
+
+        // when
+        int turnCount = inputView.inputTurnCount();
+
+        // then
+        assertThat(turnCount).isEqualTo(1);
     }
 }
