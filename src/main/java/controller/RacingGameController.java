@@ -9,14 +9,14 @@ import view.ResultView;
 public class RacingGameController {
 
     private final InputView inputView;
-    private final RacingGame racingGame;
+    private final Move move;
 
     public RacingGameController(InputView inputView, Move move) {
         this.inputView = inputView;
-        this.racingGame = gameSetUp(move);
+        this.move = move;
     }
 
-    private RacingGame gameSetUp(Move move) {
+    private RacingGame gameSetUp() {
         String[] names = inputView.inputNames();
         int turnCount = inputView.inputTurnCount();
 
@@ -25,13 +25,19 @@ public class RacingGameController {
 
     public void gameStart() {
 
+        RacingGame racingGame = gameSetUp();
+
+        play(racingGame);
+
+        ResultView.printFinalResult(racingGame.getWinnerNames());
+    }
+
+    private void play(RacingGame racingGame) {
         ResultView.printGameStart();
 
         while (!racingGame.isFinished()) {
             racingGame.start();
             ResultView.printTurnResult(racingGame.getCarList());
         }
-
-        ResultView.printFinalResult(racingGame.getWinnerNames());
     }
 }
