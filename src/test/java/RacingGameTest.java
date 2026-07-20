@@ -2,9 +2,9 @@ import domain.CarSetInitializer;
 import domain.MovableCar;
 import domain.RacingGame;
 import domain.rand.RandomMove;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import fixed.FalseFixedMove;
+import fixed.TrueFixedMove;
+import org.junit.jupiter.api.*;
 import view.InputView;
 
 import java.io.ByteArrayInputStream;
@@ -14,6 +14,15 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RacingGameTest {
+
+    private TrueFixedMove trueMove;
+    private FalseFixedMove falseMove;
+
+    @BeforeEach
+    void moveSetUp() {
+        trueMove = new TrueFixedMove();
+        falseMove = new FalseFixedMove();
+    }
 
     @Test
     @DisplayName("차가 1대인 경우")
@@ -36,7 +45,7 @@ public class RacingGameTest {
     void ifTurnIsZero() {
         // given
         String[] names = { "1st", "2nd", "3rd" };
-        RacingGame game = new RacingGame(CarSetInitializer.initCarSet(names), 0, new RandomMove());
+        RacingGame game = new RacingGame(CarSetInitializer.initCarSet(names), 0,new RandomMove());
 
         // when
         while(!game.isFinished()) {
@@ -52,26 +61,21 @@ public class RacingGameTest {
     void winnerIsMoveTwice() {
         // given
 
-        MovableCar move2 = new MovableCar("move_2");
-        MovableCar move1 = new MovableCar("move_1");
+        MovableCar exactCar = new MovableCar("exactCar");
+        MovableCar overCar = new MovableCar("overCar");
 
-        // move2 is moving twice
-        move2.move(true);
-        move2.move(true);
+        overCar.move(true);
 
-        //move1 is moving once
-        move1.move(true);
-
-        Set<MovableCar> cars = Set.of(move2, move1);
+        Set<MovableCar> cars = Set.of(exactCar, overCar);
 
         // when
-        RacingGame game = new RacingGame(cars, 0, () -> true);
+        RacingGame game = new RacingGame(cars, 0, trueMove);
         while(!game.isFinished()) {
             game.start();
         }
 
         // then
-        assertThat(game.getWinnerNames()).containsExactly("move_2");
+        assertThat(game.getWinnerNames()).containsExactly("overCar");
     }
 
     @DisplayName("이름 입력에 공백이 포함된 경우 재입력 요청")
