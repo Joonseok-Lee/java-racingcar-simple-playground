@@ -28,23 +28,8 @@ public class RacingGameTest {
     }
 
     @Test
-    @DisplayName("중복된 이름을 입력한 경우 재입력을 요청한다.")
-    void ifDuplicateNamesInput() {
-        // given
-        ByteArrayInputStream bais = new ByteArrayInputStream("Alice,Alice".getBytes());
-        InputView inputView = new InputView(bais);
-
-        // then
-        Assertions.assertThrows(
-                NoSuchElementException.class,
-                // when
-                inputView::inputNames
-        );
-    }
-
-    @Test
     @DisplayName("move(true)가 1회 호출되면, 1칸 전진한다.")
-    void testTrueFixedMove() {
+    void testFixedMove() {
         // given
         MovableCar car = new MovableCar("car");
 
@@ -57,7 +42,7 @@ public class RacingGameTest {
 
     @Test
     @DisplayName("move(false)가 1회 호출되면, 전진하지 않는다.")
-    void testFalseFixedMove() {
+    void testFixedDontMove() {
         // given
         MovableCar car = new MovableCar("car");
 
@@ -154,10 +139,40 @@ public class RacingGameTest {
     }
 
     @Test
-    @DisplayName("턴 입력에 음이 아닌 정수가 아닌 값을 입력한 경우 재입력 요청")
-    void isNotNonNegativeInteger() {
+    @DisplayName("중복된 이름을 입력한 경우 재입력을 요청한다.")
+    void ifDuplicateNamesInput() {
         // given
-        ByteArrayInputStream bais = new ByteArrayInputStream("it is string\n".getBytes());
+        ByteArrayInputStream bais = new ByteArrayInputStream("Alice,Alice".getBytes());
+        InputView inputView = new InputView(bais);
+
+        // then
+        Assertions.assertThrows(
+                NoSuchElementException.class,
+                // when
+                inputView::inputNames
+        );
+    }
+
+    @Test
+    @DisplayName("턴 입력에 음의 정수를 입력한 경우 재입력 요청")
+    void isNegativeInteger() {
+        // given
+        ByteArrayInputStream bais = new ByteArrayInputStream("-1\n".getBytes());
+        InputView inputView = new InputView(bais);
+
+        // then
+        Assertions.assertThrows(
+                NoSuchElementException.class,
+                // when
+                inputView::inputTurnCount
+        );
+    }
+
+    @Test
+    @DisplayName("턴 입력에 문자열을 입력한 경우 재입력 요청")
+    void isStringValueDuringInputTurnCount() {
+        // given
+        ByteArrayInputStream bais = new ByteArrayInputStream("hello_world\n".getBytes());
         InputView inputView = new InputView(bais);
 
         // then
