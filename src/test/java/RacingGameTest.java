@@ -74,6 +74,7 @@ public class RacingGameTest {
         }
 
         // then
+        assertThat(overCar.getDistance() > exactCar.getDistance()).isEqualTo(true);
         assertThat(game.getWinnerNames()).containsExactly("overCar");
     }
 
