@@ -25,6 +25,21 @@ public class RacingGameTest {
     }
 
     @Test
+    @DisplayName("중복된 이름을 입력한 경우 재입력을 요청한다.")
+    void ifDuplicateNamesInput() {
+        // given
+        ByteArrayInputStream bais = new ByteArrayInputStream("Alice,Alice".getBytes());
+        InputView inputView = new InputView(bais);
+
+        // then
+        Assertions.assertThrows(
+                NoSuchElementException.class,
+                // when
+                inputView::inputNames
+        );
+    }
+
+    @Test
     @DisplayName("move(true)가 1회 호출되면, 1칸 전진한다.")
     void testTrueFixedMove() {
         // given
