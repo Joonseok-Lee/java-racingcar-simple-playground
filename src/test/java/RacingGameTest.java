@@ -38,6 +38,19 @@ public class RacingGameTest {
     }
 
     @Test
+    @DisplayName("move(false)가 1회 호출되면, 전진하지 않는다.")
+    void testFalseFixedMove() {
+        // given
+        MovableCar car = new MovableCar("car");
+
+        // when
+        car.move(false);
+
+        // then
+        assertThat(car.getDistance()).isEqualTo(0);
+    }
+
+    @Test
     @DisplayName("차가 1대인 경우")
     void ifSingleCar() {
         // given
