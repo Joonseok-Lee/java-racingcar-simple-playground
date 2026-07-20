@@ -57,10 +57,9 @@ public class RacingGameTest {
     }
 
     @Test
-    @DisplayName("임의로 2칸 간 차량과 1칸 간 차량이 있는 경우")
+    @DisplayName("1칸 더 이동한 차량이 항상 우승한다.")
     void winnerIsMoveTwice() {
         // given
-
         MovableCar exactCar = new MovableCar("exactCar");
         MovableCar overCar = new MovableCar("overCar");
 
@@ -69,7 +68,7 @@ public class RacingGameTest {
         Set<MovableCar> cars = Set.of(exactCar, overCar);
 
         // when
-        RacingGame game = new RacingGame(cars, 0, trueMove);
+        RacingGame game = new RacingGame(cars, 10, trueMove);
         while(!game.isFinished()) {
             game.start();
         }
