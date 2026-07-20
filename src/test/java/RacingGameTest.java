@@ -1,7 +1,6 @@
 import domain.CarSetInitializer;
 import domain.MovableCar;
 import domain.RacingGame;
-import domain.rand.Movable;
 import domain.rand.MovableImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -9,10 +8,8 @@ import org.junit.jupiter.api.Test;
 import view.InputView;
 
 import java.io.ByteArrayInputStream;
-import java.nio.ByteBuffer;
 import java.util.NoSuchElementException;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

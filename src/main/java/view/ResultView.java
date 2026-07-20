@@ -1,7 +1,6 @@
 package view;
 
 import domain.MovableCar;
-import domain.RacingGame;
 
 import java.util.List;
 import java.util.Set;
