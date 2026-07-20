@@ -19,10 +19,9 @@ public class InputView {
 
         // 입력값이 유효한지 검증
         // 내부 메소드로 분리함
-        while(true) {
+        do {
             input = scanner.nextLine();
-            if (initNames(input)) break;
-        }
+        } while(!initNames(input));
 
         return input.split(",");
 
