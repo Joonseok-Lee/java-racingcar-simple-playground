@@ -58,7 +58,7 @@ public class RacingGameTest {
 
     @Test
     @DisplayName("1칸 더 이동한 차량이 항상 우승한다.")
-    void winnerIsMoveTwice() {
+    void winnerIsMoreMove() {
         // given
         MovableCar exactCar = new MovableCar("exactCar");
         MovableCar overCar = new MovableCar("overCar");
