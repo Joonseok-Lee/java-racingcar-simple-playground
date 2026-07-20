@@ -11,7 +11,7 @@ public class ResultView {
         System.out.println("실행 결과");
     }
 
-    public static void printTurnResult(Set<MovableCar> cars) {
+    public static void printTurnResult(List<MovableCar> cars) {
         for(MovableCar car : cars) {
             System.out.println(car.getName() + " : " + car.getDistanceToString());
         }

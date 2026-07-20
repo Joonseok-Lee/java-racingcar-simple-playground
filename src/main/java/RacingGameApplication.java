@@ -12,13 +12,13 @@ public class RacingGameApplication {
         final String[] names = inputView.inputNames();
         final int turnCount = inputView.inputTurnCount();
 
-        RacingGame racingGame = new RacingGame(CarSetInitializer.initCarSet(names), turnCount, new RandomMove());
+        RacingGame racingGame = new RacingGame(CarSetInitializer.initCarList(names), turnCount, new RandomMove());
 
         ResultView.printGameStart();
 
-        while(!racingGame.isFinished()) {
+        while (!racingGame.isFinished()) {
             racingGame.start();
-            ResultView.printTurnResult(racingGame.getCarSet());
+            ResultView.printTurnResult(racingGame.getCarList());
         }
 
         ResultView.printFinalResult(racingGame.getWinnerNames());

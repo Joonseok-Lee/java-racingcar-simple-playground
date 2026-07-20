@@ -3,17 +3,16 @@ package domain;
 import domain.rand.Move;
 
 import java.util.List;
-import java.util.Set;
 
 public class RacingGame {
 
-    private final Set<MovableCar> carSet;
+    private final List<MovableCar> carList;
     private final int turn;
     private int currentTurn;
     private final Move move;
 
-    public RacingGame(Set<MovableCar> cars, int turn, Move move) {
-        this.carSet = cars;
+    public RacingGame(List<MovableCar> cars, int turn, Move move) {
+        this.carList = cars;
         this.turn = turn;
         this.currentTurn = 0;
         this.move = move;
@@ -33,8 +32,8 @@ public class RacingGame {
                 .toList();
     }
 
-    public Set<MovableCar> getCarSet() {
-        return carSet;
+    public List<MovableCar> getCarList() {
+        return carList;
     }
 
     public boolean isFinished() {
@@ -42,21 +41,21 @@ public class RacingGame {
     }
 
     private List<MovableCar> getWinnerList(int highestDistance) {
-        return carSet.parallelStream()
+        return carList.parallelStream()
                 .filter(car ->
                         car.getDistance() == highestDistance)
                 .toList();
     }
 
     private void moveAllCar() {
-        carSet.stream()
+        carList.stream()
                 .forEach(car -> car.move(move.isMovable()));
     }
 
     private int getHighestDistance() {
         int highestDistance = 0;
 
-        for(MovableCar car : carSet) {
+        for (MovableCar car : carList) {
             highestDistance = compareDistance(car, highestDistance);
         }
 
@@ -65,7 +64,7 @@ public class RacingGame {
 
     private int compareDistance(MovableCar car, int highestDistance) {
 
-        if(car.getDistance() >= highestDistance) {
+        if (car.getDistance() >= highestDistance) {
             highestDistance = car.getDistance();
         }
 

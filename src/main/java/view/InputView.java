@@ -21,7 +21,7 @@ public class InputView {
         // 내부 메소드로 분리함
         do {
             input = scanner.nextLine();
-        } while(!initNames(input));
+        } while (!initNames(input));
 
         return input.split(",");
 
@@ -52,7 +52,7 @@ public class InputView {
         // 내부 메소드로 분리함
         do {
             turnCount = initTurnCount();
-        } while(turnCount < 0);
+        } while (turnCount < 0);
 
         return turnCount;
     }

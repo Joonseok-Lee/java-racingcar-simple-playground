@@ -1,14 +1,14 @@
 package domain;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CarSetInitializer {
 
-    public static Set<MovableCar> initCarSet(String[] names) {
-        Set<MovableCar> cars = new HashSet<>();
+    public static List<MovableCar> initCarList(String[] names) {
+        List<MovableCar> cars = new ArrayList<>();
 
-        for(String name : names) {
+        for (String name : names) {
             cars.add(new MovableCar(name));
         }
         return cars;
