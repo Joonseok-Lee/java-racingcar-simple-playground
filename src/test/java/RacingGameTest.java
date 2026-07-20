@@ -25,6 +25,19 @@ public class RacingGameTest {
     }
 
     @Test
+    @DisplayName("move(true)가 1회 호출되면, 1칸 전진한다.")
+    void testTrueFixedMove() {
+        // given
+        MovableCar car = new MovableCar("car");
+
+        // when
+        car.move(true);
+
+        // then
+        assertThat(car.getDistance()).isEqualTo(1);
+    }
+
+    @Test
     @DisplayName("차가 1대인 경우")
     void ifSingleCar() {
         // given
