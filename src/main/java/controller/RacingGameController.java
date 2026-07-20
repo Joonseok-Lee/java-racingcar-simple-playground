@@ -3,7 +3,6 @@ package controller;
 import domain.CarListInitializer;
 import domain.RacingGame;
 import domain.rand.Move;
-import domain.rand.RandomMove;
 import view.InputView;
 import view.ResultView;
 

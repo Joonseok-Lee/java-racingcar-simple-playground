@@ -3,7 +3,6 @@ package view;
 import domain.MovableCar;
 
 import java.util.List;
-import java.util.Set;
 
 public class ResultView {
 
