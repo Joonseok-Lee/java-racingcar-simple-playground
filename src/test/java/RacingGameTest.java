@@ -56,16 +56,16 @@ public class RacingGameTest {
         MovableCar move1 = new MovableCar("move_1");
 
         // move2 is moving twice
-        move2.move(4);
-        move2.move(4);
+        move2.move(true);
+        move2.move(true);
 
         //move1 is moving once
-        move1.move(4);
+        move1.move(true);
 
         Set<MovableCar> cars = Set.of(move2, move1);
 
         // when
-        RacingGame game = new RacingGame(cars, 0, () -> 4);
+        RacingGame game = new RacingGame(cars, 0, () -> true);
         while(!game.isFinished()) {
             game.start();
         }

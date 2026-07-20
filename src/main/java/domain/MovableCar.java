@@ -20,8 +20,8 @@ public class MovableCar {
 
     public String getName() { return name; }
 
-    public void move(int movable) {
-        if (movable >= 4) {
+    public void move(boolean movable) {
+        if (movable) {
             this.distance += 1;
         }
     }
