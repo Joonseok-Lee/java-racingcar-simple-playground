@@ -82,6 +82,21 @@ public class RacingGameTest {
         assertThat(game.getWinnerNames()).contains("1st", "2nd", "3rd");
     }
 
+    @Test
+    @DisplayName("모두 움직이지 않는 경우 모두 승리한다.")
+    void allCarIsStopped() {
+        // given
+        String[] names = { "1st", "2nd", "3rd" };
+        RacingGame game = new RacingGame(CarListInitializer.initCarList(names), 3, falseMove);
+
+        // when
+        while (!game.isFinished()) {
+            game.start();
+        }
+
+        // then
+        assertThat(game.getWinnerNames()).containsExactly("1st", "2nd", "3rd");
+    }
 
     @Test
     @DisplayName("1칸 더 이동한 차량이 항상 우승한다.")
