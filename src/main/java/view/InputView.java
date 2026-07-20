@@ -51,25 +51,32 @@ public class InputView {
 
         // 턴 수 검증
         // 내부 메소드로 분리함
-        while(true) {
-            turnCount = scanner.nextInt();
-            if (initTurnCount(turnCount)) break;
-        }
+        do {
+            turnCount = initTurnCount();
+        } while(turnCount < 0);
+
         return turnCount;
     }
 
-    private boolean initTurnCount(int turnCount) {
+    private int initTurnCount() {
+        int input;
         try {
-            turnCountInputValidation(turnCount);
-            return true;
+            input = scanner.nextInt();
+            turnCountInputValidation(input);
+            return input;
         } catch (InputMismatchException e) {
             System.out.println("입력값은 음이 아닌 정수만 가능합니다.");
+            scanner.next();
+            return -1;
+        } catch (IllegalArgumentException e) {
+            System.out.println("입력값은 음이 아닌 정수만 가능합니다.");
+            return -1;
         }
-        return false;
     }
 
-    private void turnCountInputValidation(int turnCount) {
-        if (turnCount < 0)
-            throw new InputMismatchException();
+    private void turnCountInputValidation(int input) {
+        if (input < 0) {
+            throw new IllegalArgumentException();
+        }
     }
 }
