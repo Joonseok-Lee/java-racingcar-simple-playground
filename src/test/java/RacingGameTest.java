@@ -8,8 +8,8 @@ import org.junit.jupiter.api.*;
 import view.InputView;
 
 import java.io.ByteArrayInputStream;
+import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -55,7 +55,7 @@ public class RacingGameTest {
     void ifSingleCar() {
         // given
         String[] names = { "single" };
-        RacingGame game = new RacingGame(CarSetInitializer.initCarSet(names), 3, new RandomMove());
+        RacingGame game = new RacingGame(CarSetInitializer.initCarList(names), 3, new RandomMove());
 
         // when
         while(!game.isFinished()) {
@@ -71,7 +71,7 @@ public class RacingGameTest {
     void ifTurnIsZero() {
         // given
         String[] names = { "1st", "2nd", "3rd" };
-        RacingGame game = new RacingGame(CarSetInitializer.initCarSet(names), 0,new RandomMove());
+        RacingGame game = new RacingGame(CarSetInitializer.initCarList(names), 0,new RandomMove());
 
         // when
         while(!game.isFinished()) {
@@ -91,7 +91,7 @@ public class RacingGameTest {
 
         overCar.move(true);
 
-        Set<MovableCar> cars = Set.of(exactCar, overCar);
+        List<MovableCar> cars = List.of(exactCar, overCar);
 
         // when
         RacingGame game = new RacingGame(cars, 10, trueMove);
@@ -104,8 +104,8 @@ public class RacingGameTest {
         assertThat(game.getWinnerNames()).containsExactly("overCar");
     }
 
-    @DisplayName("이름 입력에 공백이 포함된 경우 재입력 요청")
     @Test
+    @DisplayName("이름 입력에 공백이 포함된 경우 재입력 요청")
     void ifContainSpaceInNamesInputRequestRetry() {
         // given
         ByteArrayInputStream bais = new ByteArrayInputStream("Alice, Bob, Charlie\n".getBytes());
@@ -119,8 +119,8 @@ public class RacingGameTest {
         );
     }
 
-    @DisplayName("턴 입력에 음이 아닌 정수가 아닌 값을 입력한 경우 재입력 요청")
     @Test
+    @DisplayName("턴 입력에 음이 아닌 정수가 아닌 값을 입력한 경우 재입력 요청")
     void isNotNonNegativeInteger() {
         // given
         ByteArrayInputStream bais = new ByteArrayInputStream("it is string\n".getBytes());
@@ -134,8 +134,8 @@ public class RacingGameTest {
         );
     }
 
-    @DisplayName("이름 입력값이 정상적으로 처리된 경우")
     @Test
+    @DisplayName("이름 입력값이 정상적으로 처리된 경우")
     void validNamesInput() {
         // given
         ByteArrayInputStream bais = new ByteArrayInputStream("Alice,Bob,Charlie\n".getBytes());
@@ -148,8 +148,8 @@ public class RacingGameTest {
         assertThat(names).containsExactly("Alice", "Bob", "Charlie");
     }
 
-    @DisplayName("턴 수 입력이 정상적으로 처리된 경우")
     @Test
+    @DisplayName("턴 수 입력이 정상적으로 처리된 경우")
     void validTurnCountInput() {
         // given
         ByteArrayInputStream bais = new ByteArrayInputStream("1\n".getBytes());
