@@ -1,7 +1,7 @@
 import domain.CarSetInitializer;
 import domain.MovableCar;
 import domain.RacingGame;
-import domain.rand.MovableImpl;
+import domain.rand.RandomMove;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ public class RacingGameTest {
     void ifSingleCar() {
         // given
         String[] names = { "single" };
-        RacingGame game = new RacingGame(CarSetInitializer.initCarSet(names), 3, new MovableImpl());
+        RacingGame game = new RacingGame(CarSetInitializer.initCarSet(names), 3, new RandomMove());
 
         // when
         while(!game.isFinished()) {
@@ -36,7 +36,7 @@ public class RacingGameTest {
     void ifTurnIsZero() {
         // given
         String[] names = { "1st", "2nd", "3rd" };
-        RacingGame game = new RacingGame(CarSetInitializer.initCarSet(names), 0, new MovableImpl());
+        RacingGame game = new RacingGame(CarSetInitializer.initCarSet(names), 0, new RandomMove());
 
         // when
         while(!game.isFinished()) {

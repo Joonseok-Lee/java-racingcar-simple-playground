@@ -1,6 +1,6 @@
 package domain;
 
-import domain.rand.Movable;
+import domain.rand.Move;
 
 import java.util.List;
 import java.util.Set;
@@ -10,13 +10,13 @@ public class RacingGame {
     private final Set<MovableCar> carSet;
     private final int turn;
     private int currentTurn;
-    private final Movable movable;
+    private final Move move;
 
-    public RacingGame(Set<MovableCar> cars, int turn, Movable movable) {
+    public RacingGame(Set<MovableCar> cars, int turn, Move move) {
         this.carSet = cars;
         this.turn = turn;
         this.currentTurn = 0;
-        this.movable = movable;
+        this.move = move;
     }
 
     public void start() {
@@ -50,7 +50,7 @@ public class RacingGame {
 
     private void moveAllCar() {
         carSet.stream()
-                .forEach(car -> car.move(movable.isMovable()));
+                .forEach(car -> car.move(move.isMovable()));
     }
 
     private int getHighestDistance() {

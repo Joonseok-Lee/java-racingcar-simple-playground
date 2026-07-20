@@ -1,6 +1,6 @@
 package domain.rand;
 
-public interface Movable {
+public interface Move {
 
     int isMovable();
 }

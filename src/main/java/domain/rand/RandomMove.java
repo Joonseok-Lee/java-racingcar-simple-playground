@@ -2,7 +2,7 @@ package domain.rand;
 
 import java.util.Random;
 
-public class MovableImpl implements Movable {
+public class RandomMove implements Move {
 
     @Override
     public int isMovable() {
