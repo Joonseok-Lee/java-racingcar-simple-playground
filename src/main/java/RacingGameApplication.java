@@ -1,5 +1,7 @@
+import controller.RacingGameController;
 import domain.CarListInitializer;
 import domain.RacingGame;
+import domain.rand.Move;
 import domain.rand.RandomMove;
 import view.InputView;
 import view.ResultView;
@@ -8,19 +10,9 @@ public class RacingGameApplication {
 
     public static void run() {
         InputView inputView = new InputView(System.in);
+        Move move = new RandomMove();
 
-        final String[] names = inputView.inputNames();
-        final int turnCount = inputView.inputTurnCount();
-
-        RacingGame racingGame = new RacingGame(CarListInitializer.initCarList(names), turnCount, new RandomMove());
-
-        ResultView.printGameStart();
-
-        while (!racingGame.isFinished()) {
-            racingGame.start();
-            ResultView.printTurnResult(racingGame.getCarList());
-        }
-
-        ResultView.printFinalResult(racingGame.getWinnerNames());
+        RacingGameController racingGameController = new RacingGameController(inputView, move);
+        racingGameController.gameStart();
     }
 }
