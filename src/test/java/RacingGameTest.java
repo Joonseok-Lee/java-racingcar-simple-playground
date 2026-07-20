@@ -79,7 +79,7 @@ public class RacingGameTest {
         }
 
         // then
-        assertThat(game.getWinnerNames()).contains("1st", "2nd", "3rd");
+        assertThat(game.getWinnerNames()).containsExactly("1st", "2nd", "3rd");
     }
 
     @Test
