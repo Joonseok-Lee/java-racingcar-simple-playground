@@ -1,7 +1,9 @@
 package view;
 
 import java.io.InputStream;
+import java.util.HashSet;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -15,31 +17,41 @@ public class InputView {
     public String[] inputNames() {
         // 이름을 입력받음
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String input;
+        String[] input;
 
         // 입력값이 유효한지 검증
         // 내부 메소드로 분리함
         do {
-            input = scanner.nextLine();
-        } while (!initNames(input));
+            input = initNames();
+        } while (input == null);
 
-        return input.split(",");
+        return input;
 
     }
 
-    private boolean initNames(String input) {
+    private String[] initNames() {
         try {
-            namesInputValidation(input);
-            return true;
+            String input = scanner.nextLine();
+            return namesInputValidation(input);
         } catch (IllegalArgumentException e) {
-            System.out.println("입력값에는 공백이 포함될 수 없습니다.");
+            System.out.println(e.getMessage());
+            return null;
         }
-        return false;
     }
 
-    private void namesInputValidation(String input) {
+    private String[] namesInputValidation(String input) {
         if (input.contains(" ")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("입력값에는 공백이 포함될 수 없습니다.");
+        }
+        String[] names = input.split(",");
+        nameDuplicateValidation(names);
+        return names;
+    }
+
+
+    private void nameDuplicateValidation(String[] names) {
+        if (new HashSet<>(List.of(names)).size() != names.length) {
+            throw new IllegalArgumentException("차량의 이름은 중복될 수 없습니다.");
         }
     }
 
