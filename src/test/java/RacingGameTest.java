@@ -1,4 +1,4 @@
-import domain.CarSetInitializer;
+import domain.CarListInitializer;
 import domain.MovableCar;
 import domain.RacingGame;
 import domain.rand.RandomMove;
@@ -55,7 +55,7 @@ public class RacingGameTest {
     void ifSingleCar() {
         // given
         String[] names = { "single" };
-        RacingGame game = new RacingGame(CarSetInitializer.initCarList(names), 3, new RandomMove());
+        RacingGame game = new RacingGame(CarListInitializer.initCarList(names), 3, new RandomMove());
 
         // when
         while(!game.isFinished()) {
@@ -71,7 +71,7 @@ public class RacingGameTest {
     void ifTurnIsZero() {
         // given
         String[] names = { "1st", "2nd", "3rd" };
-        RacingGame game = new RacingGame(CarSetInitializer.initCarList(names), 0,new RandomMove());
+        RacingGame game = new RacingGame(CarListInitializer.initCarList(names), 0,new RandomMove());
 
         // when
         while(!game.isFinished()) {
@@ -81,6 +81,7 @@ public class RacingGameTest {
         // then
         assertThat(game.getWinnerNames()).contains("1st", "2nd", "3rd");
     }
+
 
     @Test
     @DisplayName("1칸 더 이동한 차량이 항상 우승한다.")

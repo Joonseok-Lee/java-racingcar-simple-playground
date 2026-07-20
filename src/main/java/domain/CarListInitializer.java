@@ -3,7 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarSetInitializer {
+public class CarListInitializer {
 
     public static List<MovableCar> initCarList(String[] names) {
         List<MovableCar> cars = new ArrayList<>();
