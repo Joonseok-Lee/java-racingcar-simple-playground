@@ -13,5 +13,5 @@ public abstract class Move {
     }
 
     public abstract boolean isMovable(int value);
-    public abstract int getRand();
+    public abstract int getRandValue();
 }
