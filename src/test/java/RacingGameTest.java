@@ -8,6 +8,7 @@ import org.junit.jupiter.api.*;
 import view.InputView;
 
 import java.io.ByteArrayInputStream;
+import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -75,6 +76,26 @@ public class RacingGameTest {
     }
 
     @Nested
+    @DisplayName("차량 리스트 테스트")
+    class CarListTest {
+
+        @Test
+        @DisplayName("이름 배열과, 초기화된 차량들의 이름이 동일한지 테스트")
+        void testCompareInputValueWithCarNames() {
+            // given
+            String[] names = { "Alice", "Bob", "Chloe" };
+
+            // when
+            List<MovableCar> cars = CarListInitializer.initCarList(names);
+
+            // then
+            assertThat(cars)
+                    .extracting(MovableCar::getName)
+                    .containsExactly("Alice", "Bob", "Chloe");
+        }
+    }
+
+    @Nested
     @DisplayName("게임 로직 테스트")
     class WinLogicTest {
 
@@ -83,7 +104,7 @@ public class RacingGameTest {
         void testCountingCarCountAfterCarInit() {
             // given
             String[] names = { "Alice", "Bob", "Chloe" };
-            int expected = 3;
+            int expected = names.length;
 
             // when
             RacingGame game = new RacingGame(CarListInitializer.initCarList(names), 0, trueMove);
