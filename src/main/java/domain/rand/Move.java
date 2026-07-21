@@ -8,7 +8,10 @@ public abstract class Move {
         this.threshold = threshold;
     }
 
-    public abstract boolean isMovable(int value);
+    public int getThreshold() {
+        return threshold;
+    }
 
+    public abstract boolean isMovable(int value);
     public abstract int getRand();
 }
