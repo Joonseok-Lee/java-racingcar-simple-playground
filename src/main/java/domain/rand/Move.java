@@ -2,5 +2,7 @@ package domain.rand;
 
 public interface Move {
 
-    boolean isMovable();
+    boolean isMovable(int value);
+
+    int getRand();
 }
