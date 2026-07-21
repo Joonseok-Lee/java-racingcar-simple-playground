@@ -10,7 +10,6 @@ import view.InputView;
 import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,11 +17,13 @@ public class RacingGameTest {
 
     private TrueFixedMove trueMove;
     private FalseFixedMove falseMove;
+    private RandomMove randMove;
 
     @BeforeEach
     void moveSetUp() {
         trueMove = new TrueFixedMove(4);
         falseMove = new FalseFixedMove(4);
+        randMove = new RandomMove(4);
     }
 
     @Nested
@@ -52,6 +53,24 @@ public class RacingGameTest {
 
             // then
             assertThat(car.getDistance()).isEqualTo(0);
+        }
+
+        @Test
+        @DisplayName("4 이상이면 전진, 3 이하면 멈춤 테스트")
+        void moveLogicTest() {
+            // given
+            MovableCar move = new MovableCar("move");
+            MovableCar dontMove = new MovableCar("dontMove");
+
+            // when
+            move.move(randMove.isMovable(4));
+            move.move(randMove.isMovable(9));
+            dontMove.move(randMove.isMovable(3));
+            dontMove.move(randMove.isMovable(0));
+
+            // then
+            assertThat(move.getDistance()).isEqualTo(2);
+            assertThat(dontMove.getDistance()).isEqualTo(0);
         }
     }
 
