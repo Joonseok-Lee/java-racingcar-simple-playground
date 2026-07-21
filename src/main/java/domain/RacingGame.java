@@ -49,7 +49,7 @@ public class RacingGame {
 
     private void moveAllCar() {
         carList.stream()
-                .forEach(car -> car.move(move.isMovable(move.getRand())));
+                .forEach(car -> car.move(move.isMovable(move.getRandValue())));
     }
 
     private int getHighestDistance() {

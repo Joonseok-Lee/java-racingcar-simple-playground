@@ -2,21 +2,22 @@ package domain.rand;
 
 import java.util.Random;
 
-public class RandomMove implements Move {
+public class RandomMove extends Move {
 
     private final Random rand;
 
-    public RandomMove(Random rand) {
-        this.rand = rand;
+    public RandomMove(int  threshold) {
+        super(threshold);
+        this.rand = new Random();
     }
 
     @Override
     public boolean isMovable(int value) {
-        return value >= 4;
+        return value >= super.getThreshold();
     }
 
     @Override
-    public int getRand() {
+    public int getRandValue() {
         return rand.nextInt(10);
     }
 }

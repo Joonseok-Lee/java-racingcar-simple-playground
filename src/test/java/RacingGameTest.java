@@ -64,7 +64,7 @@ public class RacingGameTest {
         void ifSingleCar() {
             // given
             String[] names = { "single" };
-            RacingGame game = new RacingGame(CarListInitializer.initCarList(names), 3, new RandomMove());
+            RacingGame game = new RacingGame(CarListInitializer.initCarList(names), 3, new RandomMove(4));
 
             // when
             while(!game.isFinished()) {
@@ -80,7 +80,7 @@ public class RacingGameTest {
         void ifTurnIsZero() {
             // given
             String[] names = { "1st", "2nd", "3rd" };
-            RacingGame game = new RacingGame(CarListInitializer.initCarList(names), 0,new RandomMove());
+            RacingGame game = new RacingGame(CarListInitializer.initCarList(names), 0,new RandomMove(4));
 
             // when
             while(!game.isFinished()) {
