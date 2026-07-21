@@ -1,8 +1,14 @@
 package domain.rand;
 
-public interface Move {
+public abstract class Move {
 
-    boolean isMovable(int value);
+    private final int threshold;
 
-    int getRand();
+    public Move(int threshold) {
+        this.threshold = threshold;
+    }
+
+    public abstract boolean isMovable(int value);
+
+    public abstract int getRand();
 }
