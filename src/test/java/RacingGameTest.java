@@ -75,15 +75,29 @@ public class RacingGameTest {
     }
 
     @Nested
-    @DisplayName("게임 우승자 처리 테스트")
+    @DisplayName("게임 로직 테스트")
     class WinLogicTest {
+
+        @Test
+        @DisplayName(", 구분자로 구분된 이름 배열의 길이와, 초기화된 게임의 차량 대수가 같은지 테스트")
+        void testCountingCarCountAfterCarInit() {
+            // given
+            String[] names = { "Alice", "Bob", "Chloe" };
+            int expected = 3;
+
+            // when
+            RacingGame game = new RacingGame(CarListInitializer.initCarList(names), 0, trueMove);
+
+            // then
+            assertThat(game.getCarList().size()).isEqualTo(expected);
+        }
 
         @Test
         @DisplayName("차가 1대인 경우")
         void ifSingleCar() {
             // given
             String[] names = { "single" };
-            RacingGame game = new RacingGame(CarListInitializer.initCarList(names), 3, new RandomMove(4));
+            RacingGame game = new RacingGame(CarListInitializer.initCarList(names), 3, randMove);
 
             // when
             while(!game.isFinished()) {
@@ -99,7 +113,7 @@ public class RacingGameTest {
         void ifTurnIsZero() {
             // given
             String[] names = { "1st", "2nd", "3rd" };
-            RacingGame game = new RacingGame(CarListInitializer.initCarList(names), 0,new RandomMove(4));
+            RacingGame game = new RacingGame(CarListInitializer.initCarList(names), 0, randMove);
 
             // when
             while(!game.isFinished()) {
