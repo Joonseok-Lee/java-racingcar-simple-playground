@@ -139,6 +139,21 @@ public class RacingGameTest {
     }
 
     @Test
+    @DisplayName("이름 입력이 5글자 이상 된 경우 재입력 요청")
+    void ifNameInputLengthExceeded5() {
+        // given
+        ByteArrayInputStream bais = new ByteArrayInputStream("edward\n".getBytes());
+        InputView inputView = new InputView(bais);
+
+        // then
+        Assertions.assertThrows(
+                NoSuchElementException.class,
+                // when
+                inputView::inputNames
+        );
+    }
+
+    @Test
     @DisplayName("중복된 이름을 입력한 경우 재입력을 요청한다.")
     void ifDuplicateNamesInput() {
         // given
