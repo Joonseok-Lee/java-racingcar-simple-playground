@@ -10,6 +10,7 @@ import view.InputView;
 import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
