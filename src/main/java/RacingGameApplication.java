@@ -3,8 +3,6 @@ import domain.rand.Move;
 import domain.rand.RandomMove;
 import view.InputView;
 
-import java.util.Random;
-
 public class RacingGameApplication {
 
     public static void run() {

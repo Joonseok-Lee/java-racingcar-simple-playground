@@ -8,7 +8,6 @@ import org.junit.jupiter.api.*;
 import view.InputView;
 
 import java.io.ByteArrayInputStream;
-import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
