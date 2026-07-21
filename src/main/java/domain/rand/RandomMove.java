@@ -12,11 +12,6 @@ public class RandomMove extends Move {
     }
 
     @Override
-    public boolean isMovable(int value) {
-        return value >= super.getThreshold();
-    }
-
-    @Override
     public int getRandValue() {
         return rand.nextInt(10);
     }

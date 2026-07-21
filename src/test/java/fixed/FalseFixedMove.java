@@ -9,11 +9,6 @@ public class FalseFixedMove extends Move {
     }
 
     @Override
-    public boolean isMovable(int value) {
-        return value >= super.getThreshold();
-    }
-
-    @Override
     public int getRandValue() {
         return 3;
     }
