@@ -21,8 +21,8 @@ public class RacingGameTest {
 
     @BeforeEach
     void moveSetUp() {
-        trueMove = new TrueFixedMove();
-        falseMove = new FalseFixedMove();
+        trueMove = new TrueFixedMove(4);
+        falseMove = new FalseFixedMove(4);
     }
 
     @Nested

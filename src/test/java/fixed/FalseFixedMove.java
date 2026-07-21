@@ -2,15 +2,19 @@ package fixed;
 
 import domain.rand.Move;
 
-public class FalseFixedMove implements Move {
+public class FalseFixedMove extends Move {
 
-    @Override
-    public boolean isMovable(int value) {
-        return value >= 4;
+    public FalseFixedMove(int threshold) {
+        super(threshold);
     }
 
     @Override
-    public int getRand() {
+    public boolean isMovable(int value) {
+        return value >= super.getThreshold();
+    }
+
+    @Override
+    public int getRandValue() {
         return 3;
     }
 }
