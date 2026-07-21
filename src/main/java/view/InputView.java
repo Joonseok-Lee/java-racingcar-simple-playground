@@ -32,26 +32,42 @@ public class InputView {
     private String[] initNames() {
         try {
             String input = scanner.nextLine();
-            return namesInputValidation(input);
+            return parseNamesInput(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
 
-    private String[] namesInputValidation(String input) {
-        if (input.contains(" ")) {
-            throw new IllegalArgumentException("입력값에는 공백이 포함될 수 없습니다.");
-        }
-        String[] names = input.split(",");
+    private String[] parseNamesInput(String input) {
+        return valid(input);
+    }
+
+    private String[] valid(String input) {
+        String[] names = namesHasSpaceValidation(input);
         nameDuplicateValidation(names);
+        for (String name : names) {
+            nameLengthExceededValidation(name);
+        }
         return names;
     }
 
+    private String[] namesHasSpaceValidation(String input) {
+        if (input.contains(" ")) {
+            throw new IllegalArgumentException("입력값에는 공백이 포함될 수 없습니다.");
+        }
+        return input.split(",");
+    }
 
     private void nameDuplicateValidation(String[] names) {
         if (new HashSet<>(List.of(names)).size() != names.length) {
             throw new IllegalArgumentException("차량의 이름은 중복될 수 없습니다.");
+        }
+    }
+
+    private void nameLengthExceededValidation(String name) {
+        if (name.length() <= 5) {
+            throw new IllegalArgumentException("이름은 5자 이하만 가능합니다.");
         }
     }
 
