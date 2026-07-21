@@ -12,6 +12,9 @@ public abstract class Move {
         return threshold;
     }
 
-    public abstract boolean isMovable(int value);
+    public boolean isMovable(int value) {
+        return value >= threshold;
+    }
+
     public abstract int getRandValue();
 }
