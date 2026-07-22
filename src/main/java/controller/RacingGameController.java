@@ -1,10 +1,14 @@
 package controller;
 
 import domain.CarListInitializer;
+import domain.RacingCar;
 import domain.RacingGame;
 import domain.rand.Move;
 import view.InputView;
 import view.ResultView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RacingGameController {
 
@@ -17,10 +21,26 @@ public class RacingGameController {
     }
 
     private RacingGame gameSetUp() {
-        String[] names = inputView.inputNames();
+
+        List<RacingCar> carList = new ArrayList<>();
+        while (carList == null || carList.isEmpty()) {
+            String[] names = inputView.inputNames();
+            carList = carListSetUp(names);
+        }
+
         int turnCount = inputView.inputTurnCount();
 
-        return new RacingGame(CarListInitializer.initCarList(names), turnCount, move);
+        return new RacingGame(carList, turnCount, move);
+    }
+
+    private List<RacingCar> carListSetUp(String[] names) {
+        try {
+            return CarListInitializer.initCarList(names);
+        } catch (IllegalArgumentException e) {
+            // FIXME ResultView로 리팩토링
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
     public void gameStart() {

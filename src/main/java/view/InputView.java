@@ -40,16 +40,7 @@ public class InputView {
     }
 
     private String[] parseNamesInput(String input) {
-        return valid(input);
-    }
-
-    private String[] valid(String input) {
-        String[] names = namesHasSpaceValidation(input);
-        nameDuplicateValidation(names);
-        for (String name : names) {
-            nameLengthExceededValidation(name);
-        }
-        return names;
+        return namesHasSpaceValidation(input);
     }
 
     private String[] namesHasSpaceValidation(String input) {
@@ -57,18 +48,6 @@ public class InputView {
             throw new IllegalArgumentException("입력값에는 공백이 포함될 수 없습니다.");
         }
         return input.split(",");
-    }
-
-    private void nameDuplicateValidation(String[] names) {
-        if (new HashSet<>(List.of(names)).size() != names.length) {
-            throw new IllegalArgumentException("차량의 이름은 중복될 수 없습니다.");
-        }
-    }
-
-    private void nameLengthExceededValidation(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("이름은 5자 이하만 가능합니다.");
-        }
     }
 
     public int inputTurnCount() {
