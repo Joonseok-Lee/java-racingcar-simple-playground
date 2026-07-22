@@ -15,15 +15,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RacingGameTest {
 
+    private final int MIN = 0;
+    private final int MAX = 9;
+    private final int THRESHOLD = 4;
+
     private TrueFixedMove trueMove;
     private FalseFixedMove falseMove;
     private RandomMove randMove;
 
     @BeforeEach
     void moveSetUp() {
-        trueMove = new TrueFixedMove(4);
-        falseMove = new FalseFixedMove(4);
-        randMove = new RandomMove(4);
+        trueMove = new TrueFixedMove(MIN, MAX, THRESHOLD);
+        falseMove = new FalseFixedMove(MIN, MAX, THRESHOLD);
+        randMove = new RandomMove(MIN,MAX,THRESHOLD);
     }
 
     @Nested
@@ -64,9 +68,9 @@ public class RacingGameTest {
 
             // when
             move.move(randMove.isMovable(randMove.getThreshold()));
-            move.move(randMove.isMovable(9));
+            move.move(randMove.isMovable(MAX));
             dontMove.move(randMove.isMovable(randMove.getThreshold() - 1));
-            dontMove.move(randMove.isMovable(0));
+            dontMove.move(randMove.isMovable(MIN));
 
             // then
             assertThat(move.getDistance()).isEqualTo(2);
