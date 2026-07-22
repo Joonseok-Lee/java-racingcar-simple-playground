@@ -56,16 +56,16 @@ public class RacingGameTest {
         }
 
         @Test
-        @DisplayName("4 이상이면 전진, 3 이하면 멈춤 테스트")
+        @DisplayName("threshold 이상이면 전진, threshold 미만이면 멈춤 테스트")
         void moveLogicTest() {
             // given
             RacingCar move = new RacingCar("move");
             RacingCar dontMove = new RacingCar("dontMove");
 
             // when
-            move.move(randMove.isMovable(4));
+            move.move(randMove.isMovable(randMove.getThreshold()));
             move.move(randMove.isMovable(9));
-            dontMove.move(randMove.isMovable(3));
+            dontMove.move(randMove.isMovable(randMove.getThreshold() - 1));
             dontMove.move(randMove.isMovable(0));
 
             // then
