@@ -129,6 +129,21 @@ public class RacingGameTest {
         }
 
         @Test
+        @DisplayName("입력된 이름이 빈 문자열인 경우")
+        void ifNameInputIsBlank() {
+            // given
+            String[] names = { "Alice", "", "Chloe" };
+
+            // then
+            Assertions.assertThrows(
+                    IllegalArgumentException.class,
+
+                    // when
+                    () -> CarListInitializer.initCarList(names)
+            );
+        }
+
+        @Test
         @DisplayName("차량 초기화가 정상적으로 처리된 경우")
         void isSuccessCarListInit() {
             // given
