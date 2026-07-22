@@ -1,6 +1,6 @@
 package view;
 
-import domain.MovableCar;
+import domain.RacingCar;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ public class ResultView {
         System.out.println("실행 결과");
     }
 
-    public static void printTurnResult(List<MovableCar> cars) {
-        for(MovableCar car : cars) {
+    public static void printTurnResult(List<RacingCar> cars) {
+        for(RacingCar car : cars) {
             System.out.println(car.getName() + " : " + car.getDistanceToString());
         }
         System.out.println();

@@ -6,12 +6,12 @@ import java.util.List;
 
 public class RacingGame {
 
-    private final List<MovableCar> carList;
+    private final List<RacingCar> carList;
     private final int turn;
     private int currentTurn;
     private final Move move;
 
-    public RacingGame(List<MovableCar> cars, int turn, Move move) {
+    public RacingGame(List<RacingCar> cars, int turn, Move move) {
         this.carList = cars;
         this.turn = turn;
         this.currentTurn = 0;
@@ -28,11 +28,11 @@ public class RacingGame {
         int highestDistance = getHighestDistance();
 
         return getWinnerList(highestDistance).stream()
-                .map(MovableCar::getName)
+                .map(RacingCar::getName)
                 .toList();
     }
 
-    public List<MovableCar> getCarList() {
+    public List<RacingCar> getCarList() {
         return carList;
     }
 
@@ -40,7 +40,7 @@ public class RacingGame {
         return currentTurn == turn;
     }
 
-    private List<MovableCar> getWinnerList(int highestDistance) {
+    private List<RacingCar> getWinnerList(int highestDistance) {
         return carList.parallelStream()
                 .filter(car ->
                         car.getDistance() == highestDistance)
@@ -55,14 +55,14 @@ public class RacingGame {
     private int getHighestDistance() {
         int highestDistance = 0;
 
-        for (MovableCar car : carList) {
+        for (RacingCar car : carList) {
             highestDistance = compareDistance(car, highestDistance);
         }
 
         return highestDistance;
     }
 
-    private int compareDistance(MovableCar car, int highestDistance) {
+    private int compareDistance(RacingCar car, int highestDistance) {
 
         if (car.getDistance() >= highestDistance) {
             highestDistance = car.getDistance();

@@ -1,5 +1,5 @@
 import domain.CarListInitializer;
-import domain.MovableCar;
+import domain.RacingCar;
 import domain.RacingGame;
 import domain.rand.RandomMove;
 import fixed.FalseFixedMove;
@@ -33,7 +33,7 @@ public class RacingGameTest {
         @DisplayName("move(true)가 1회 호출되면, 1칸 전진한다.")
         void testFixedMove() {
             // given
-            MovableCar car = new MovableCar("car");
+            RacingCar car = new RacingCar("car");
 
             // when
             car.move(true);
@@ -46,7 +46,7 @@ public class RacingGameTest {
         @DisplayName("move(false)가 1회 호출되면, 전진하지 않는다.")
         void testFixedDontMove() {
             // given
-            MovableCar car = new MovableCar("car");
+            RacingCar car = new RacingCar("car");
 
             // when
             car.move(false);
@@ -59,8 +59,8 @@ public class RacingGameTest {
         @DisplayName("4 이상이면 전진, 3 이하면 멈춤 테스트")
         void moveLogicTest() {
             // given
-            MovableCar move = new MovableCar("move");
-            MovableCar dontMove = new MovableCar("dontMove");
+            RacingCar move = new RacingCar("move");
+            RacingCar dontMove = new RacingCar("dontMove");
 
             // when
             move.move(randMove.isMovable(4));
@@ -85,11 +85,11 @@ public class RacingGameTest {
             String[] names = { "Alice", "Bob", "Chloe" };
 
             // when
-            List<MovableCar> cars = CarListInitializer.initCarList(names);
+            List<RacingCar> cars = CarListInitializer.initCarList(names);
 
             // then
             assertThat(cars)
-                    .extracting(MovableCar::getName)
+                    .extracting(RacingCar::getName)
                     .containsExactly("Alice", "Bob", "Chloe");
         }
     }
@@ -164,12 +164,12 @@ public class RacingGameTest {
         @DisplayName("1칸 더 이동한 차량이 항상 우승한다.")
         void winnerIsMoreMove() {
             // given
-            MovableCar exactCar = new MovableCar("exactCar");
-            MovableCar overCar = new MovableCar("overCar");
+            RacingCar exactCar = new RacingCar("exactCar");
+            RacingCar overCar = new RacingCar("overCar");
 
             overCar.move(true);
 
-            List<MovableCar> cars = List.of(exactCar, overCar);
+            List<RacingCar> cars = List.of(exactCar, overCar);
 
             // when
             RacingGame game = new RacingGame(cars, 10, trueMove);
