@@ -8,6 +8,7 @@ import org.junit.jupiter.api.*;
 import view.InputView;
 
 import java.io.ByteArrayInputStream;
+import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -95,6 +96,50 @@ public class RacingGameTest {
             assertThat(cars)
                     .extracting(RacingCar::getName)
                     .containsExactly("Alice", "Bob", "Chloe");
+        }
+
+        @Test
+        @DisplayName("중복된 이름을 입력한 경우 잘못된 입력으로 예외 처리")
+        void ifDuplicateNamesInput() {
+            // given
+            String[] names = { "Alice", "Alice" };
+
+            // then
+            Assertions.assertThrows(
+                    IllegalArgumentException.class,
+
+                    // when
+                    () -> CarListInitializer.initCarList(names)
+            );
+        }
+
+        @Test
+        @DisplayName("이름 입력이 5글자 이상 된 경우 잘못된 입력으로 예외 처리")
+        void ifNameInputLengthExceeded5() {
+            // given
+            String[] names = { "Alice", "Bob", "Charlie" };
+
+            // then
+            Assertions.assertThrows(
+                    IllegalArgumentException.class,
+
+                    // when
+                    () -> CarListInitializer.initCarList(names)
+            );
+        }
+
+        @Test
+        @DisplayName("차량 초기화가 정상적으로 처리된 경우")
+        void isSuccessCarListInit() {
+            // given
+            String[] names = { "Alice", "Bob", "Chloe" };
+
+            // when
+            List<RacingCar> racingCars = CarListInitializer.initCarList(names);
+            List<String> actual = racingCars.stream().map(RacingCar::getName).toList();
+
+            // then
+            assertThat(actual).containsExactly(names);
         }
     }
 
@@ -196,36 +241,6 @@ public class RacingGameTest {
         void ifContainSpaceInNamesInputRequestRetry() {
             // given
             ByteArrayInputStream bais = new ByteArrayInputStream("Alice, Bob, Charlie\n".getBytes());
-            InputView inputView = new InputView(bais);
-
-            // then
-            Assertions.assertThrows(
-                    NoSuchElementException.class,
-                    // when
-                    inputView::inputNames
-            );
-        }
-
-        @Test
-        @DisplayName("이름 입력이 5글자 이상 된 경우 재입력 요청")
-        void ifNameInputLengthExceeded5() {
-            // given
-            ByteArrayInputStream bais = new ByteArrayInputStream("edward\n".getBytes());
-            InputView inputView = new InputView(bais);
-
-            // then
-            Assertions.assertThrows(
-                    NoSuchElementException.class,
-                    // when
-                    inputView::inputNames
-            );
-        }
-
-        @Test
-        @DisplayName("중복된 이름을 입력한 경우 재입력을 요청")
-        void ifDuplicateNamesInput() {
-            // given
-            ByteArrayInputStream bais = new ByteArrayInputStream("Alice,Alice".getBytes());
             InputView inputView = new InputView(bais);
 
             // then
