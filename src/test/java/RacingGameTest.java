@@ -282,6 +282,21 @@ public class RacingGameTest {
         }
 
         @Test
+        @DisplayName("턴 입력에 소수를 입력한 경우 재입력 요청")
+        void isFloatValueDuringInputTurnCount() {
+            // given
+            ByteArrayInputStream bais = new ByteArrayInputStream("1.1\n".getBytes());
+            InputView inputView = new InputView(bais);
+
+            // then
+            Assertions.assertThrows(
+                    NoSuchElementException.class,
+                    // when
+                    inputView::inputTurnCount
+            );
+        }
+
+        @Test
         @DisplayName("이름 입력값이 정상적으로 처리된 경우")
         void validNamesInput() {
             // given
