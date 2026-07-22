@@ -165,7 +165,7 @@ public class RacingGameTest {
         @DisplayName("차가 1대인 경우")
         void ifSingleCar() {
             // given
-            String[] names = { "single" };
+            String[] names = { "car" };
             RacingGame game = new RacingGame(CarListInitializer.initCarList(names), 3, randMove);
 
             // when
@@ -174,7 +174,7 @@ public class RacingGameTest {
             }
 
             // then
-            assertThat(game.getWinnerNames()).containsExactly("single");
+            assertThat(game.getWinnerNames()).containsExactly("car");
         }
 
         @Test
